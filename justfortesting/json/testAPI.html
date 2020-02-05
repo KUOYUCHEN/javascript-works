@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div id="post">
+        <input type="text" name="name" placeholder="name">
+        <a href="javaScript:;">輸入</a>
+    </div>
+
+    <div id="delete">
+        <input type="text" name="delete" placeholder="id">
+        <a href="javaScript:;">刪除</a>
+    </div>
+
+    <div id="replace">
+        <input type="text" name="id" placeholder="id">
+        <input type="text" name="name" placeholder="name">
+        <a href="javaScript:;">交換</a>
+    </div>
+
+
+    <div id="getData"></div>
+
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script>
+
+        // show data
+        $(
+            function (params) {
+                $.ajax({
+                    url: "http://localhost:3000/dataOfCustomer",
+                    dataType: "json",
+                    method: "get",
+                    data: {}
+                }).done(
+                    function (res) {
+                        console.log(res);
+                        res.forEach(data => {
+                            $("#getData").append(`<li>${data.id} ${data.name}</li>`)
+                        });
+                    }
+                ).fail(
+                    function (err) {
+                        console.log(err);
+                    })
+            }
+        )
+        // post Data
+        $("#post > a").on("click", function () {
+            name = $("#getDa > input[name=name]").val().trim()
+            if (!name) return false
+            $.ajax(
+                {
+                    url: 'http://localhost:3000/dataOfCustomer',
+                    dataType: 'json',
+                    method: 'post',
+                    data: {
+                        name: name
+                    },
+                }
+            )
+        })
+        // del data
+        $("#delete > a").on("click", function () {
+            id = $("#delete > input[name=delete]").val().trim()
+            if (!id) return false
+            $.ajax(
+                {
+                    url: 'http://localhost:3000/dataOfCustomer/' + id,
+                    dataType: 'json',
+                    method: 'delete',
+                }
+            )
+        })
+        // replace data
+        $("#replace > a").on("click", function () {
+            let id = $("#replace > input[name=id]").val().trim()
+            if (!id) return false
+            let name = $("#replace > input[name=name]").val().trim()
+            if (!name) return false
+            $.ajax(
+                {
+                    url: "http://localhost:3000/dataOfCustomer/" + id,
+                    dataType: "json",
+                    method: "put",
+                    data: {
+                        name: name
+                    }
+                }
+            )
+        })
+    </script>
+</body>
+
+</html>

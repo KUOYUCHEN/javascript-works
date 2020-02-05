@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>poker</title>
+</head>
+
+<body>
+    <h1>陳郭祐</h1>
+
+    <h3>撲克牌(52張牌)(以52個數字代替)，並將牌發放完畢，顯示所有人手上拿到的牌。
+        需有重新洗牌機制，需有設定人數機制。</h3>
+
+    <label for="players">玩家：</label>
+    <input type="text" name="players" id="players">
+    <input type="button" value="發牌" onclick="deal()">
+    <div id="pokerArea" style="position:relative;">
+    </div>
+
+    <script type="text/javascript">
+
+        //1.先初始化撲克牌
+        let poker = [];
+        let typeOfCard = ["clubs", "hearts", "diamonds", "spades"];
+        let number = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+
+        window.onload = function () {
+            for (let i = 0; i < typeOfCard.length; i++) {
+                for (let j = 0; j < number.length; j++) {
+                    let item = [typeOfCard[i], number[j]];
+                    poker.push(item);
+                }
+            }
+        };
+
+        //洗牌
+        function shuffle(a, b) {
+            let num = Math.random() > 0.5 ? -1 : 1;
+            return num;
+        };
+
+        //發牌事件
+        function deal() {
+
+            //洗牌
+            poker.sort(shuffle);
+
+            //玩家數量
+            let players = document.getElementsByTagName("input")[0].value
+            let playerCards = [];
+            let pokerArea = document.getElementById("pokerArea");
+            pokerArea.innerHTML = "";
+
+            //初始化陣列
+            for (let j = 0; j < players; j++) {
+                playerCards[j] = [];
+            }
+            //開始發牌
+            for (let i = 0; i < poker.length; i++) {
+                let x = i % players;
+                playerCards[x].push(poker[i]);
+            }
+            // 動態DOM
+            for (let j = 0; j < players; j++) {
+                let p = document.createElement("p");
+                for (let i = 0; i < playerCards[j].length; i++) {
+                    let img = document.createElement("img");
+                    img.setAttribute("id", playerCards[i]);
+                    img.src = playerCards[j][i][0] + "/" + playerCards[j][i][1] + ".gif";
+                    p.appendChild(img);
+                }
+                pokerArea.appendChild(p);
+
+                console.log(playerCards[0][0][0]);
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>

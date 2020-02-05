@@ -1,0 +1,31 @@
+body {
+	background-color: #E4E4E4;
+	padding: 20px;
+}
+#BOX {
+	width: 900px;
+	margin: 0 auto;
+	border: 1px solid #999;
+	position: relative;
+	padding: 20px;
+	background-color: #FFF;
+	text-align:center;
+	box-shadow:1px 5px 10px #666666;
+}
+#BOX img {
+}
+#BOX #TITLE {
+	width: 900px;
+	height: 100px;
+	background-color: rgba(0,0,0,0.6);
+	position: absolute;
+	top: 522px;
+	left: 20px;
+	display: none;
+
+	font-size: 80px;
+	font-family:"微軟正黑體";
+	line-height: 100px;
+	text-align:center;
+	color: #FFF;
+}

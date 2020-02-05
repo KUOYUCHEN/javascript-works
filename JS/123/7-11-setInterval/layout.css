@@ -1,0 +1,65 @@
+
+@import url("reset.css");
+
+body{
+	background-color:#DDD;
+	padding-top:50px;
+}
+
+#BANNER {
+	width: 800px;
+	height: 600px;
+	margin: 0 auto;
+	padding: 15px;
+	border: 1px solid #666;
+	background-color:#FFF;
+	box-shadow:1px 5px 8px #999;
+}
+#WRAPPER {
+	width: 800px;
+	height: 600px;
+	overflow: hidden;
+	position: relative;
+}
+#WRAPPER ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+}
+#WRAPPER li {
+}
+#WRAPPER li img {
+	vertical-align: bottom;
+}
+#NUMBER {
+	width: 800px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+#NUMBER ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 800px;
+	margin: 0 auto;
+	padding-top: 10px;
+}
+#NUMBER li {
+	cursor: pointer;
+	float: left;
+	display: block;
+	width: 40px;
+	height: 40px;
+	font-family: Verdana, Geneva, sans-serif;
+	text-align: center;
+	line-height: 40px;
+	border: 1px solid #777;
+	margin-right: 5px;
+	background-color:#FFF;
+	box-shadow:1px 5px 8px #999;
+}
+#NUMBER li.BLUE {
+	background-color: #099;
+	color: #FFF;
+}

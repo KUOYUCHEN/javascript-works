@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            /* display: block; */
+            margin-bottom: 50px;
+            left: 0;
+            transition: left 3s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <img class="images" data-distance="500" src='https://picsum.photos/200/200/?random=1'>
+    <img class="images" data-distance="700" data-top="250" src='https://picsum.photos/200/200/?random=2'>
+
+    <script>
+
+        let image = document.querySelectorAll(".images");
+
+        function activeGo() {
+
+            for (let i = 0; i < image.length; i++) {
+                // let distance1 = image[i].dataset.distance;
+                // let top1 = image[i].dataset.top;
+
+
+                let distance1 = Math.random() * 500
+                let top1 = Math.random() * 500
+
+                // console.log(top1);
+
+                image[i].style.left = distance1 + "px";
+                image[i].style.top = top1 + "px";
+
+
+            }
+
+        }
+
+        window.addEventListener("load", activeGo)
+
+
+        // console.log(image[0]);
+
+
+    </script>
+</body>
+
+</html>

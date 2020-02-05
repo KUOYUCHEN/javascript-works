@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jsImage</title>
+</head>
+
+<body>
+
+
+    <div id="getData"></div>
+
+
+    <div id="getImg">
+        <input type="text" name="img" id="" placeholder="輸入數字">
+        <a href="javaScript:;">送出</a>
+    </div>
+
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script>
+        $(function () {
+            $.ajax(
+                {
+                    url: 'http://localhost:3000/banners',
+                    method: 'get',
+                    dataType: 'json',
+                    data: {
+                    },
+                }
+            ).done(
+                function (res) {
+                    console.log(res);
+                    // $("#getData").empty()
+                    // res.forEach(banners => {
+                    //     $("#getData").append(`<img style="width:500px; height:500px" src=${banners.src}> ${banners.id}`)
+                    // });
+                }).fail(
+                    function (err) {
+                        console.log(err);
+                    }
+                )
+        })
+
+        $("#getImg > a").on("click", function () {
+            let img = $("#getImg > input[name=img]").val().trim();
+            if (!img) return false
+            $.ajax({
+                url: 'http://localhost:3000/banners/' + img,
+                dataType: 'json',
+                method: 'get',
+            }).done(function (banners) {
+                $("#getImg").append(`<img style="width:300px; height:300px" src=${banners.src}>`)
+            })
+        })
+
+
+    </script>
+</body>
+
+</html>
